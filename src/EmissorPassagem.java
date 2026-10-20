@@ -2,7 +2,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public abstract class EmissorPassagem {
-    // Template Method: o procedimento de emissão fica definido em um único lugar.
+    
     public final void emitir(String nomePassageiro, double valorTarifa) {
         if (nomePassageiro == null || nomePassageiro.isBlank()) {
             throw new IllegalArgumentException("O nome do passageiro é obrigatório.");
