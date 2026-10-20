@@ -1,0 +1,74 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Passagem {
+  +getModal(): String
+  +getNomePassageiro(): String
+  +getValorTarifa(): double
+  +calcularTaxaEmbarque(): double
+  +getDocumentosExigidos(): List<String>
+}
+
+class PassagemAerea {
+  -nomePassageiro: String
+  -valorTarifa: double
+  +PassagemAerea(nomePassageiro: String, valorTarifa: double)
+  +getModal(): String
+  +getNomePassageiro(): String
+  +getValorTarifa(): double
+  +calcularTaxaEmbarque(): double
+  +getDocumentosExigidos(): List<String>
+}
+class PassagemRodoviaria {
+  -nomePassageiro: String
+  -valorTarifa: double
+  +PassagemRodoviaria(nomePassageiro: String, valorTarifa: double)
+  +getModal(): String
+  +getNomePassageiro(): String
+  +getValorTarifa(): double
+  +calcularTaxaEmbarque(): double
+  +getDocumentosExigidos(): List<String>
+}
+class PassagemFerroviaria {
+  -nomePassageiro: String
+  -valorTarifa: double
+  +PassagemFerroviaria(nomePassageiro: String, valorTarifa: double)
+  +getModal(): String
+  +getNomePassageiro(): String
+  +getValorTarifa(): double
+  +calcularTaxaEmbarque(): double
+  +getDocumentosExigidos(): List<String>
+}
+
+abstract class EmissorPassagem {
+  +emitir(nomePassageiro: String, valorTarifa: double): void
+  #criarPassagem(nomePassageiro: String, valorTarifa: double): Passagem
+}
+class EmissorAereo {
+  #criarPassagem(nomePassageiro: String, valorTarifa: double): Passagem
+}
+class EmissorRodoviario {
+  #criarPassagem(nomePassageiro: String, valorTarifa: double): Passagem
+}
+class EmissorFerroviario {
+  #criarPassagem(nomePassageiro: String, valorTarifa: double): Passagem
+}
+class Main {
+  +main(args: String[]): void
+}
+
+Passagem <|.. PassagemAerea
+Passagem <|.. PassagemRodoviaria
+Passagem <|.. PassagemFerroviaria
+EmissorPassagem <|-- EmissorAereo
+EmissorPassagem <|-- EmissorRodoviario
+EmissorPassagem <|-- EmissorFerroviario
+EmissorPassagem ..> Passagem : usa abstração
+EmissorAereo ..> PassagemAerea : cria
+EmissorRodoviario ..> PassagemRodoviaria : cria
+EmissorFerroviario ..> PassagemFerroviaria : cria
+Main ..> EmissorPassagem
+Main ..> EmissorAereo
+Main ..> EmissorRodoviario
+Main ..> EmissorFerroviario
+@enduml
