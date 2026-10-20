@@ -25,6 +25,5 @@ public abstract class EmissorPassagem {
         System.out.println();
     }
 
-    // Factory Method: cada emissor especializado escolhe a passagem concreta.
     protected abstract Passagem criarPassagem(String nomePassageiro, double valorTarifa);
 }
